@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home_screen);
         homeScreenCreateButton = findViewById(R.id.createAccButton);
         signUpButton = findViewById(R.id.signUpButtonHomeScreen);
+
         homeScreenCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

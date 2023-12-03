@@ -30,16 +30,24 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.jjoe64.graphview.DefaultLabelFormatter;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,14 +60,15 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
     private static String getUserInfoUrl = "http://20.62.111.133:80/api/get_user_info";
     private static String getbmiUrl = "http://20.62.111.133:80/api/bmi";
     private static String getWeightUrl = "http://20.62.111.133:80/api/get_weight";
+    // Graph for showing weights
+    private GraphView weightGraph;
 
     int stepCount = 0;
     int targetStepCount = 0; // Declare it at the class level
     ImageView statisticsButton;
     ImageView notificationButton;
     ImageView settingsButton;
-
-    LineChart weightGraph;
+    // Graph for showing steps
     BarChart stepsBar;
     TextView displayWeight;
     TextView displayName;
@@ -72,18 +81,42 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
 
     private LineChart lineChart;
     private RequestQueue requestQueue;
+    private LineGraphSeries<DataPoint> weights;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
+
+
+
+
         setContentView(R.layout.statistics);
+        // getting graph
+        weightGraph = (GraphView) findViewById(R.id.graph);
+        weightGraph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // Convert the value back to a date
+                    Date date = new Date((long) value);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+                    return sdf.format(date);
+                } else {
+                    // Let the Y-values be normal decimal values
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+        });
+
+
+        weights = new LineGraphSeries<>();
+
         statisticsButton = findViewById(R.id.statisticsButton);
         notificationButton = findViewById(R.id.notificationButton);
         settingsButton = findViewById(R.id.settingsButton);
         bmi = findViewById(R.id.textViewBmi);
-        displayWeight = findViewById(R.id.textViewWeight);
 
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -256,20 +289,22 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
         MyVolleyRequest.postRequest(getApplicationContext(), getWeightUrl, requestData, new MyVolleyRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result)  {
-
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
                     JSONObject response = new JSONObject(result);
-                    String weighttext = response.getString("message");
-                    weighttext = weighttext.replace("[","");
-                    weighttext = weighttext.replace("]","");
-                    weighttext = weighttext.replace("{","");
-                    weighttext = weighttext.replace("}","");
-                    weighttext = weighttext.replace(",","\n:");
-                    weighttext = weighttext.replace("\""," ");
-                    displayWeight.setText(weighttext);
-
+                    JSONArray jArray = response.getJSONArray("message");
+                    for (int i = jArray.length() - 1; i >= 0; i--) {
+                        String dateString = jArray.getJSONObject(i).getString("DATE");
+                        Double weight = jArray.getJSONObject(i).getDouble("Weight");
+                        Date date = formatter.parse(dateString);
+                        DataPoint dp = new DataPoint(date, weight);
+                        weights.appendData(dp, true, 50, false);
+                    }
+                    weightGraph.addSeries(weights);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
             }
             @Override
