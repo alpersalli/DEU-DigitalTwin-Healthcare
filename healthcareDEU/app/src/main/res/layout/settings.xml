@@ -18,14 +18,17 @@
 
     <TextView
         android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="82dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="181dp"
-        android:layout_marginTop="56dp"
-        android:text="Name" />
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="Name"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView15"
@@ -35,7 +38,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="112dp"
-        android:text="Account Information" />
+        android:text="Account Information"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView16"
@@ -45,7 +50,8 @@
         android:layout_alignStart="@+id/textView15"
         android:layout_marginStart="28dp"
         android:layout_marginTop="11dp"
-        android:text="Username" />
+        android:text="Username"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView18"
@@ -55,7 +61,8 @@
         android:layout_alignStart="@+id/textView15"
         android:layout_marginStart="28dp"
         android:layout_marginTop="58dp"
-        android:text="E-mail" />
+        android:text="E-mail"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewEmail"
@@ -65,7 +72,8 @@
         android:layout_alignStart="@+id/textView15"
         android:layout_marginStart="143dp"
         android:layout_marginTop="55dp"
-        android:text="xyz@mail.com" />
+        android:text="xyz@mail.com"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView21"
@@ -75,7 +83,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="263dp"
-        android:text="Personal Information" />
+        android:text="Personal Information"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView22"
@@ -85,7 +95,8 @@
         android:layout_alignStart="@+id/textView21"
         android:layout_marginStart="28dp"
         android:layout_marginTop="14dp"
-        android:text="Age" />
+        android:text="Age"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView28"
@@ -97,7 +108,9 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="441dp"
         android:layout_marginEnd="253dp"
-        android:text="Goals" />
+        android:text="Goals"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView31"
@@ -107,7 +120,8 @@
         android:layout_alignStart="@+id/textView28"
         android:layout_marginStart="30dp"
         android:layout_marginTop="51dp"
-        android:text="Target Step Count" />
+        android:text="Target Step Count"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewTargetStep"
@@ -117,7 +131,8 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="54dp"
         android:layout_toEndOf="@+id/textView29"
-        android:text="Steps" />
+        android:text="Steps"
+        android:typeface="monospace" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -167,17 +182,18 @@
         android:layout_alignStart="@+id/textView15"
         android:layout_marginStart="143dp"
         android:layout_marginTop="-18dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:typeface="monospace" />
 
     <Button
         android:id="@+id/signOutBtn"
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginEnd="209dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="224dp"
         android:layout_marginBottom="105dp"
         android:text="Sign Out" />
 
@@ -188,10 +204,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="221dp"
+        android:layout_marginStart="217dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="105dp"
-        android:text="Delete Account" />
+        android:layout_marginBottom="104dp"
+        android:text=" Delete Account" />
 
     <ImageView
         android:id="@+id/editaccButton"
@@ -200,9 +216,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="315dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="667dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="666dp"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <ImageView
@@ -223,7 +239,8 @@
         android:layout_alignStart="@+id/textView28"
         android:layout_marginStart="31dp"
         android:layout_marginTop="14dp"
-        android:text="Target Weight" />
+        android:text="Target Weight"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewAge"
@@ -232,9 +249,10 @@
         android:layout_below="@+id/textView22"
         android:layout_alignStart="@+id/textView21"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="143dp"
+        android:layout_marginStart="144dp"
         android:layout_marginTop="-22dp"
-        android:text="21" />
+        android:text="21"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView26"
@@ -244,7 +262,8 @@
         android:layout_alignStart="@+id/textView21"
         android:layout_marginStart="28dp"
         android:layout_marginTop="49dp"
-        android:text="Height" />
+        android:text="Height"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewHeight"
@@ -254,7 +273,8 @@
         android:layout_alignBottom="@+id/textView21"
         android:layout_marginStart="144dp"
         android:layout_marginBottom="-62dp"
-        android:text="193" />
+        android:text="193"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView24"
@@ -264,7 +284,8 @@
         android:layout_alignBottom="@+id/textView21"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="-109dp"
-        android:text="Gender" />
+        android:text="Gender"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewGender"
@@ -272,9 +293,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView21"
         android:layout_alignStart="@+id/textView21"
-        android:layout_marginStart="143dp"
+        android:layout_marginStart="144dp"
         android:layout_marginTop="91dp"
-        android:text="Female" />
+        android:text="Female"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textViewTargetWeight"
@@ -282,8 +304,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView28"
         android:layout_alignStart="@+id/textView28"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="15dp"
-        android:text="kg" />
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="17dp"
+        android:text="kg"
+        android:typeface="monospace" />
 
 </RelativeLayout>

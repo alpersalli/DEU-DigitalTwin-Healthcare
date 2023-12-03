@@ -7,14 +7,18 @@
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="243dp"
+        android:layout_height="104dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="116dp"
-        android:text="Account Information" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="84dp"
+        android:gravity="center"
+        android:text="Account Information"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/textView33"
@@ -24,7 +28,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="78dp"
         android:layout_marginTop="199dp"
-        android:text="Name" />
+        android:text="Name"
+        android:typeface="monospace" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -45,7 +50,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="78dp"
         android:layout_marginTop="301dp"
-        android:text="E-mail" />
+        android:text="E-mail"
+        android:typeface="monospace" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -53,8 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="327dp"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
@@ -65,7 +71,8 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="83dp"
-        android:text="Password" />
+        android:text="Password"
+        android:typeface="monospace" />
 
     <Button
         android:id="@+id/accInfoSave"
@@ -89,13 +96,14 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="83dp"
-        android:layout_marginBottom="337dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="167dp"
+        android:layout_marginBottom="348dp"
         android:ems="10"
         android:inputType="textPassword" />
 
