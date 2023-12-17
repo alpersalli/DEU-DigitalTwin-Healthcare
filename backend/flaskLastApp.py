@@ -302,7 +302,7 @@ def get_weight():
 
                 cursor.execute("UPDATE measurements SET user_id = ?",[username])
                 conn.commit()
-                cursor.execute("SELECT date_of_measurement,weight FROM measurements  ORDER BY date_of_measurement DESC LIMIT 5")
+                cursor.execute("SELECT date_of_measurement,weight FROM measurements  ORDER BY date_of_measurement ASC")
                 newdata=cursor.fetchall()
                 print(newdata)
                 cursor.close()
@@ -319,7 +319,7 @@ def get_weight():
                 print(veri_listesi)
                 return jsonify({'message':veri_listesi}), 200
         except Exception as e:
-                 return jsonify({"error": str(e)}), 402
+                return jsonify({"error": str(e)}), 402
 
 
 
