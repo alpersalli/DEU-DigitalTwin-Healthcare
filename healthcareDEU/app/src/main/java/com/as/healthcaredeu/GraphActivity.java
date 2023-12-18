@@ -52,14 +52,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class GraphActivity extends AppCompatActivity implements SensorEventListener{
 
-    private static String getUserInfoUrl = "http://20.62.111.133:80/api/get_user_info";
-    private static String getbmiUrl = "http://20.62.111.133:80/api/bmi";
-    private static String getWeightUrl = "http://20.62.111.133:80/api/get_weight";
+    private static String getUserInfoUrl = "http://20.125.193.10:80/api/get_user_info";
+    private static String getbmiUrl = "http://20.125.193.10:80/api/bmi";
+    private static String getWeightUrl = "http://20.125.193.10:80/api/get_weight";
     // Graph for showing weights
     private GraphView weightGraph;
 
@@ -82,17 +84,21 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
     private LineChart lineChart;
     private RequestQueue requestQueue;
     private LineGraphSeries<DataPoint> weights;
-
+    private HashMap<Date, Double> weightMap;
+    TextView alertView;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
 
+        weightMap = new HashMap<>();
 
 
 
         setContentView(R.layout.statistics);
+
+        alertView = findViewById(R.id.alert);
         // getting graph
         weightGraph = (GraphView) findViewById(R.id.graph);
         weightGraph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -145,7 +151,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
 
         getWeight(username);
         bmiCalc(username);
-
+        detectDangerousWeightLoss();
         statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +176,29 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 startActivity(intent);
             }
         });
+    }
+
+    private void detectDangerousWeightLoss(){
+
+        Iterator<Date> dateIterator = weightMap.keySet().iterator();
+        while (dateIterator.hasNext()){
+            Date date = dateIterator.next();
+            Double weight = weightMap.get(date);
+            Double upperLimit = weight * 1.05;
+            Double bottomLimit = weight * 0.95;
+            // plus one month in milliseconds
+            Date oneMonthAfter = new Date((long) (date.getTime() + 2629800000.0));
+            Iterator<Date> dateIteratorToCompare = weightMap.keySet().iterator();
+            while (dateIteratorToCompare.hasNext()){
+                Date dateToCompare = dateIterator.next();
+                if(dateToCompare.after(date) && dateToCompare.before(oneMonthAfter) || dateToCompare.equals(date)){
+                    Double weightToCompare = weightMap.get(dateToCompare);
+                    if(weightToCompare <= bottomLimit || weightToCompare >= upperLimit){
+                        alertView.setText("Between " + date.toString() + " and " + dateToCompare.toString() + " dangerous weight loss or gain." );
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -293,10 +322,11 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 try {
                     JSONObject response = new JSONObject(result);
                     JSONArray jArray = response.getJSONArray("message");
-                    for (int i = jArray.length() - 1; i >= 0; i--) {
+                    for (int i = 0; i < jArray.length(); i++) {
                         String dateString = jArray.getJSONObject(i).getString("DATE");
                         Double weight = jArray.getJSONObject(i).getDouble("Weight");
                         Date date = formatter.parse(dateString);
+                        weightMap.put(date, weight);
                         DataPoint dp = new DataPoint(date, weight);
                         weights.appendData(dp, true, 50, false);
                     }
@@ -313,9 +343,5 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 displayWeight.setText("null");
             }
         });
-
     }
-
 }
-
-
