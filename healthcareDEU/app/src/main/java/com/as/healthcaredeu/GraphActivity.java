@@ -151,7 +151,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
 
         getWeight(username);
         bmiCalc(username);
-        detectDangerousWeightLoss();
+
         statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,11 +190,11 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
             Date oneMonthAfter = new Date((long) (date.getTime() + 2629800000.0));
             Iterator<Date> dateIteratorToCompare = weightMap.keySet().iterator();
             while (dateIteratorToCompare.hasNext()){
-                Date dateToCompare = dateIterator.next();
-                if(dateToCompare.after(date) && dateToCompare.before(oneMonthAfter) || dateToCompare.equals(date)){
+                Date dateToCompare = dateIteratorToCompare.next();
+                if(dateToCompare.after(date) && dateToCompare.before(oneMonthAfter) || dateToCompare.equals(date) || dateToCompare.equals(oneMonthAfter)){
                     Double weightToCompare = weightMap.get(dateToCompare);
                     if(weightToCompare <= bottomLimit || weightToCompare >= upperLimit){
-                        alertView.setText("Between " + date.toString() + " and " + dateToCompare.toString() + " dangerous weight loss or gain." );
+                        alertView.setText("Between " + date.getDay() + "/" + date.getMonth() + " and " + dateToCompare.getDay() + "/" + dateToCompare.getMonth()  + " dangerous weight loss or gain." );
                     }
                 }
             }
@@ -337,6 +337,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+                detectDangerousWeightLoss();
             }
             @Override
             public void onError(String error) {
