@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class DeleteAccActivity  extends AppCompatActivity {
 
-    String url = "http://20.62.111.133:80/api/deleteacc";
+    String url = "http://20.125.193.10:80/api/deleteacc";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

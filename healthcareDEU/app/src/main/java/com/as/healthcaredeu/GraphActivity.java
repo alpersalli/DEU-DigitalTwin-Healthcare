@@ -321,6 +321,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
                     JSONObject response = new JSONObject(result);
+                    if(result.equals(null)) return;
                     JSONArray jArray = response.getJSONArray("message");
                     for (int i = 0; i < jArray.length(); i++) {
                         String dateString = jArray.getJSONObject(i).getString("DATE");

@@ -18,7 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EditPersonalInfoActivity extends AppCompatActivity {
-    String editpersinfoUrl = "http://20.62.111.133:80/api/editpersinfo";
+    String editpersinfoUrl = "http://20.125.193.10:80/api/editpersinfo";
 
     EditText editAge;
     EditText editHeight;

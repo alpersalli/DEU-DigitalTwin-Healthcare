@@ -17,8 +17,8 @@ import org.json.JSONObject;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static String getEmailUrl = "http://20.62.111.133:80/api/get_email"; // Update with your API endpoint
-    private static String getUserInfoUrl = "http://20.62.111.133:80/api/get_user_info"; // Update with your API endpoint
+    private static String getEmailUrl = "http://20.125.193.10:80/api/get_email"; // Update with your API endpoint
+    private static String getUserInfoUrl = "http://20.125.193.10:80/api/get_user_info"; // Update with your API endpoint
 
 
     TextView displayName;

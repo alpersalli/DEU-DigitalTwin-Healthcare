@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EditGoalsActivity extends AppCompatActivity {
-    String url = "http://20.62.111.133:80/api/edittargetinfo";
+    String url = "http://20.125.193.10:80/api/edittargetinfo";
     EditText weightGoal;
     EditText stepCountGoal;
     Button save;

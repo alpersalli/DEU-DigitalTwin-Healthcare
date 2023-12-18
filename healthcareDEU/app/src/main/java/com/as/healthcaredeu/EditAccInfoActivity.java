@@ -19,7 +19,7 @@ public class EditAccInfoActivity extends AppCompatActivity {
     EditText editPassword;
     Button save;
     Button cancel;
-    private static String url = "http://20.62.111.133:80/api/editaccinfo";
+    private static String url = "http://20.125.193.10:80/api/editaccinfo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CreateAccountActivity extends AppCompatActivity {
-    private static String url = "http://20.62.111.133:80/api/createacc";
+    private static String url = "http://20.125.193.10:80/api/createacc";
     private String POST = "POST";
     private String GET = "GET";
     Button signUp;
