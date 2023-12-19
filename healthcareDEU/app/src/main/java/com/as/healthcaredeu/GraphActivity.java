@@ -244,7 +244,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
             e.printStackTrace();
         }
 
-        MyVolleyRequest.postRequest(getApplicationContext(), getUserInfoUrl, requestData, new MyVolleyRequest.VolleyCallback() {
+/*        MyVolleyRequest.postRequest(getApplicationContext(), getUserInfoUrl, requestData, new MyVolleyRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -253,7 +253,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                     String targetSteps = response.getString("targetsteps");
 
                     targetStepCount = Integer.parseInt(targetSteps);
-                    float progress = (float) stepCount / targetStepCount;
+                    int progress = (int) stepCount / targetStepCount;
                     CircularProgressBar circularProgressBar = findViewById(R.id.progress_circular);
 
                     // Set the progress to the CircularProgressBar
@@ -274,7 +274,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
                 // Handle error when fetching user information
                 Toast.makeText(GraphActivity.this, "Error fetching user information", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
 
