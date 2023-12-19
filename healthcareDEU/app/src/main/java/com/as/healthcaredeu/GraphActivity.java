@@ -179,6 +179,7 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
     }
 
     private void detectDangerousWeightLoss(){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM");
 
         Iterator<Date> dateIterator = weightMap.keySet().iterator();
         while (dateIterator.hasNext()){
@@ -189,12 +190,13 @@ public class GraphActivity extends AppCompatActivity implements SensorEventListe
             // plus one month in milliseconds
             Date oneMonthAfter = new Date((long) (date.getTime() + 2629800000.0));
             Iterator<Date> dateIteratorToCompare = weightMap.keySet().iterator();
+
             while (dateIteratorToCompare.hasNext()){
                 Date dateToCompare = dateIteratorToCompare.next();
                 if(dateToCompare.after(date) && dateToCompare.before(oneMonthAfter) || dateToCompare.equals(date) || dateToCompare.equals(oneMonthAfter)){
                     Double weightToCompare = weightMap.get(dateToCompare);
                     if(weightToCompare <= bottomLimit || weightToCompare >= upperLimit){
-                        alertView.setText("Between " + date.getDay() + "/" + date.getMonth() + " and " + dateToCompare.getDay() + "/" + dateToCompare.getMonth()  + " dangerous weight loss or gain." );
+                        alertView.setText("Between " + format.format(date) + " and " + format.format(dateToCompare)  + " dangerous weight loss or gain." );
                     }
                 }
             }
